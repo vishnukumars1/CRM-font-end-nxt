@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@600;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="{% static 'assets/css/maicons.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendor/animate/animate.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/theme.css' %}">
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+
+  <style>
+    body {
+      background-image: url('{% static "img/shape.png" %}');
+      background-size: cover;
+    }
+
+    #imc:hover {
+      transform: scale(1.1);
+      transition: .6s;
+
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-white fixed-top shadow mb-5 bg-white" style="height: 100px;">
+    <a class="navbar-brand text-dark" href="">
+      <h5><i class="bi bi-shield-fill-check"></i> insuranz</h5>
+    </a>
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"><i class="bi bi-shield-fill-check"></i></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mx-auto bg-white rounded pe-4 py-3 py-lg-0 p-2">
+        <li class="nav-item active">
+          <a class="nav-link text-dark" href="{% url 'admin_home' %}" id="home">
+            <h5>HOME</h5>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link text-dark" href="{% url 'add_agency_page' %}" id="home">
+            <h5>DASHBOARD</h5>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link text-dark" href="{% url 'add_agency_page' %}" id="home">
+            <h5>BACK <i class="bi bi-backspace-fill"></i></h5>
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+  </nav>
+
+  <br><br><br><br><br>
+
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-3">
+      <div class="col wow fadeInUp">
+        <div>
+          <div class="card mb-3">
+
+            {% if view.profile %}
+            <img src="{{view.profile.url}}" class="card-img-top" id="imc">
+            {% else %}
+            <img src="{% static 'img/images.png' %}" class="card-img-top" id="imc" style="height: 300px;">
+            {% endif %}
+
+            <div class="card-body">
+              <h2 class="card-title text-dark text-center">{{view.user.first_name}} {{view.user.last_name}}</h2>
+              <center>
+                <a href="{% url 'edit_agent' view.id %}"><button class="btn btn-outline-dark"
+                    style="height: 20px;"><small style="font-size: xx-small;position: relative;bottom: 13px;">
+                      Edit</small></button></a>&nbsp;&nbsp;
+                <a href="{% url 'deleteagent' view.id %}"><i class="bi bi-trash-fill text-danger"></i></a>
+              </center>
+
+            </div>
+          </div>
+
+          
+
+        </div>
+
+      </div>   
+
+      <div class="col wow fadeInUp" data-wow-delay="0.3s">
+
+        <div class="shadow mb-2 p-2 rounded" style="background-color: rgba(241, 241, 241, 0.112);">
+
+          <h5>Qualification</h5>
+
+          {% if view.qualification == 'degree' %}
+
+          <div class="progress" role="progressbar" aria-label="Success striped example" aria-valuenow="90"
+            aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar progress-bar-striped bg-success" style="width: 90%">DEGREE</div>
+          </div>
+
+          {% elif view.qualification == 'plus two' %}
+
+          <div class="progress" role="progressbar" aria-label="Info striped example" aria-valuenow="50"
+            aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar progress-bar-striped bg-info" style="width: 50%">PLUS TWO</div>
+          </div>
+
+          {% else %}
+
+          <div class="progress" role="progressbar" aria-label="Warning striped example" aria-valuenow="20"
+            aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar progress-bar-striped bg-warning" style="width: 20%">SSLC</div>
+          </div>
+
+          {% endif %}
+
+          <br>
+
+          <h5>Experience</h5>
+
+          <div class="progress" role="progressbar" aria-label="Success striped example" aria-valuenow="80"
+            aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar progress-bar-striped bg-success" style="width: 80%">Max</div>
+          </div>
+        </div>
+        <br>
+        <div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d504593.80578547047!2d76.7247853!3d8.8666395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1717411120959!5m2!1sen!2sin"
+            width="100%" height="300px" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+      </div>
+
+      <div class="col wow fadeInUp" data-wow-delay="0.5s">
+        <div class="shadow mb-2 p-2 rounded" style="background-color: rgba(255, 255, 255, 0.11);">
+          <br>
+          <h5><i class="bi bi-envelope-fill"></i> mail : {{view.user.email}}</h5> <br>
+          <h5><i class="bi bi-calendar2"></i> Date of birth : {{view.dob}} </h5><br>
+          {% if view.gender == 'male' %}
+          <h5>Gender : {{view.gender}} <i class="bi bi-gender-male"></i></h5>
+          {% elif view.gender == 'female' %}
+          <h5>Gender : {{view.gender}} <i class="bi bi-gender-female"></i></h5>
+          {% else %}
+          <h5>Gender : {{view.gender}} <i class="bi bi-gender-trans"></i></h5>
+          {% endif %}
+          <br>
+          <h5>Address : {{view.address}}</h5><br>
+          <h5><i class="bi bi-telephone-fill"></i> Phone number : {{view.phone_number}}</h5><br>
+          <h5>Aadhaar : {{view.aadaar_number}}</h5><br>
+          <h5>Pan : {{view.pan_number}}</h5><br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="{% static 'assets/js/jquery-3.5.1.min.js' %}"></script>
+
+  <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+  <script src="{% static 'assets/js/theme.js' %}"></script>
+
+  <script src="{% static 'assets/js/google-maps.js' %}"></script>
+
+  <script src="{% static 'assets/vendor/wow/wow.min.js' %}"></script>
+
+  <script src="{% static 'js/main.js' %}"></script>
+
+  <script>
+    function initMap() {
+      var mapOptions = {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8
+      };
+      var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    }
+  </script>
+
+  <script>
+    initMap();
+  </script>
+
+
+</body>
+
+</html>
