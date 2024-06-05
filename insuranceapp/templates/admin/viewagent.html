@@ -39,8 +39,6 @@
       transition: .6s;
 
     }
-
-
   </style>
 </head>
 
@@ -50,19 +48,14 @@
       <h5><i class="bi bi-shield-fill-check"></i> insuranz</h5>
     </a>
     <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-      <span class="navbar-toggler-icon"><i class="bi bi-shield-fill-check"></i></span>
+      <span class="navbar-toggler-icon"><i class="bi bi-caret-down-square-fill"></i></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mx-auto bg-white rounded pe-4 py-3 py-lg-0 p-2">
         <li class="nav-item active">
-          <a class="nav-link text-dark" href="{% url 'admin_home' %}" id="home">
-            <h5>HOME</h5>
-          </a>
-        </li>
-        <li class="nav-item active">
           <a class="nav-link text-dark" href="{% url 'add_agency_page' %}" id="home">
-            <h5>DASHBOARD</h5>
+            <h5>HOME</h5>
           </a>
         </li>
         <li class="nav-item active">
@@ -102,11 +95,11 @@
             </div>
           </div>
 
-          
+
 
         </div>
 
-      </div>   
+      </div>
 
       <div class="col wow fadeInUp" data-wow-delay="0.3s">
 
@@ -173,6 +166,7 @@
           <h5><i class="bi bi-telephone-fill"></i> Phone number : {{view.phone_number}}</h5><br>
           <h5>Aadhaar : {{view.aadaar_number}}</h5><br>
           <h5>Pan : {{view.pan_number}}</h5><br>
+          <h5>No of customer: {{tot}}</h5>
         </div>
       </div>
     </div>
@@ -192,19 +186,7 @@
 
   <script src="{% static 'js/main.js' %}"></script>
 
-  <script>
-    function initMap() {
-      var mapOptions = {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 8
-      };
-      var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    }
-  </script>
 
-  <script>
-    initMap();
-  </script>
 
 
 </body>

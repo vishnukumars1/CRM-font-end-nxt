@@ -56,14 +56,13 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mx-auto bg-white rounded pe-4 py-3 py-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link text-dark" href="{% url 'admin_home' %}" id="home">
-                        <h5>ADD AGENT</h5>
+                    <a class="nav-link text-dark" href="{% url 'agent_home' %}" id="home">
+                        <h5>HOME</h5>
                     </a>
                 </li>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <li class="nav-item active">
-                    <a class="nav-link text-dark" href="{% url 'logout' %}" id="home">
-                        <h5>LOGOUT <i class="bi bi-box-arrow-right"></i></h5>
+                    <a class="nav-link text-dark" href="{% url 'agent_home' %}" id="home">
+                        <h5>BACK <i class="bi bi-backspace-fill"></i></h5>
                     </a>
                 </li>
             </ul>
@@ -76,20 +75,21 @@
 
     <div class="container">
         <div class="row row-cols-1 row-cols-md-3">
-            {% for i in agen %}
+            {% for i in view %}
             <div class="col wow fadeInDown">
                 <div class="card mb-3">
 
                     {% if i.profile %}
                     <img src="{{i.profile.url}}" class="card-img-top" id="imc">
                     {% else %}
-                    <img src="{% static 'img/images.png' %}" class="card-img-top" id="imc" style="height: 350px;">
+                    <img src="{% static 'img/images.png' %}" class="card-img-top" id="imc" style="height: 300px;">
                     {% endif %}
 
                     <div class="card-body">
                         <h2 class="card-title text-dark text-center">{{i.user.first_name}} {{i.user.last_name}}</h2>
                         <center>
-                            <a href="{% url 'view_agent' i.id %}"><button class="btn btn-outline-dark">View</button></a>
+                            <a href="{% url 'view_customer' i.id %}"><button
+                                    class="btn btn-outline-dark">View</button></a>
                         </center>
                     </div>
                 </div>

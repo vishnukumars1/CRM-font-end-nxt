@@ -30,11 +30,16 @@
       background-image: url('{% static "img/shape.png" %}');
       background-size: cover;
     }
+
+
+    li a:hover {
+      font-style: italic;
+    }
   </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-md navbar-white shadow mb-5 bg-white" style="height: 100px;">
+  <nav class="navbar navbar-expand-md navbar-white shadow mb-5 bg-white fixed-top" style="height: 100px;">
     <a class="navbar-brand text-dark" href="">
       <span style="font-weight: bold;"><i class="bi bi-shield-fill-check"></i> insuranz</span>
     </a>
@@ -45,12 +50,17 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mx-auto bg-white rounded pe-4 py-3 py-lg-0">
         <li class="nav-item active">
-          <a class="nav-link text-dark" href="{% url 'add_agency_page' %}" id="home">
+          <a class="nav-link text-dark" href="{% url 'agent_home' %}" id="home">
             <h5>HOME</h5>
           </a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link text-dark" href="{% url 'view_agent' editage.id %}" id="home">
+          <a class="nav-link text-dark" href="{% url 'dash_board' %}" id="home">
+            <h5>DASHBOARD</h5>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link text-dark" href="{% url 'agent_home' %}" id="home">
             <h5>BACK <i class="bi bi-backspace-fill"></i></h5>
           </a>
         </li>
@@ -59,24 +69,16 @@
     </div>
   </nav>
 
+  <br><br><br><br><br>
 
-  <div class="container">
-    <div class="col wow fadeInUp">
+  <div class="container wow fadeInUp">
+    <div>
 
-      <form action="{% url 'edit' editage.id %}" method="post" enctype="multipart/form-data" class="form-group">
+      <form action="{% url 'add_cus' %}" method="post" enctype="multipart/form-data" class="form-group">
 
         {% csrf_token %}
 
-        <h1 class="text-center">Edit agent</h1><br>
-
-        {% if editage.profile %}
-        <center><img src="{{editage.profile.url}}" class="img-thumbnail rounded-circle"
-            style="height: 100px;width: 100px;"></center>
-        {% else %}
-        <center><img src="{% static 'img/images.png' %}" class="img-thumbnail rounded-circle"
-            style="height: 100px;width: 100px;"></center>
-        {% endif %}
-
+        <h1 class="text-center">Add customer <i class="bi bi-person-circle"></i></h1><br>
 
         {% for s in messages %}
         <div class="alert {% if s.tags == 'error' %}alert-danger{% elif s.tags == 'success' %}alert-success{% endif %}"
@@ -85,43 +87,77 @@
         </div>
         {% endfor %}
 
-        <input type="text" name="f_name" style="border: none;border-bottom: 2px solid;"
-          value="{{editage.user.first_name}}" class="form-control" required><br>
-        <input type="text" name="l_name" style="border: none;border-bottom: 2px solid;"
-          value="{{editage.user.last_name}}" class="form-control" required><br>
-        <input type="text" name="u_name" style="border: none;border-bottom: 2px solid;"
-          value="{{editage.user.username}}" class="form-control" required><br>
-        <input type="number" name="a_number" style="border: none;border-bottom: 2px solid;"
-          value="{{editage.aadaar_number}}" class="form-control" required><br>
-        <input type="text" name="pan" style="border: none;border-bottom: 2px solid;" value="{{editage.pan_number}}"
+        <input type="text" name="f_name" style="border: none;border-bottom: 2px solid;" placeholder="First name"
           class="form-control" required><br>
 
-        <select name="quali" class="form-control" required>
-          <option value="{{editage.qualification}}">{{editage.qualification}}</option>
-          <option value="sslc">SSLC</option>
-          <option value="plus two">PLUS TWO</option>
-          <option value="degree">DEGREE</option>
-        </select><br>
+
+        <input type="text" name="l_name" style="border: none;border-bottom: 2px solid;" placeholder="Last name"
+          class="form-control" required><br>
+
+        <input type="text" name="username" style="border: none;border-bottom: 2px solid;" placeholder="User name"
+          class="form-control" required><br>
+
+
+        <input type="number" name="num" style="border: none;border-bottom: 2px solid;" placeholder="Phone number"
+          class="form-control" required><br>
+
 
         <select name="gent" class="form-control" required>
-          <option value="{{editage.gender}}">{{editage.gender}}</option>
+          <option>GENDER</option>
           <option value="male">MALE</option>
           <option value="female">FEMALE</option>
           <option value="others">OTHERS</option>
         </select><br>
 
-        <textarea name="address" cols="30" rows="4" placeholder="Address" class="form-control" required>
-                        {{editage.address}}
-                    </textarea><br>
+        <textarea name="address" cols="30" rows="4" placeholder="Address" class="form-control" required></textarea><br>
 
-        <input type="number" name="num" style="border: none;border-bottom: 2px solid;" value="{{editage.phone_number}}"
+        <input type="number" name="ag" placeholder="Age" class="form-control" required><br>
+
+        <label for="do">Date Of Birth</label>
+        <input type="date" name="dob" id="do" class="form-control" required><br>
+
+        <input type="text" name="occupi" style="border: none;border-bottom: 2px solid;" placeholder="profession"
           class="form-control" required><br>
 
-        <input type="email" name="e_mail" style="border: none;border-bottom: 2px solid;" value="{{editage.user.email}}"
+        <select name="quali" class="form-control" required>
+          <option>QUALIFICATION</option>
+          <option value="sslc">SSLC</option>
+          <option value="plus two">PLUS TWO</option>
+          <option value="degree">DEGREE</option>
+        </select><br>
+
+        <input type="number" name="income" placeholder="Annual Income" class="form-control" required><br>
+
+        <input type="number" name="a_number" style="border: none;border-bottom: 2px solid;" placeholder="Aadhar"
+          class="form-control" required><br>
+
+        <input type="text" name="pan" style="border: none;border-bottom: 2px solid;" placeholder="Pan"
           class="form-control" required><br>
 
         <label for="profile">Profile</label>
         <input type="file" name="img" class="form-control" id="profile" accept="image/*"><br>
+
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="yes" value="have" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Have kids
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="yes" value="not" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1">
+            No kids
+          </label>
+        </div>
+
+        <br>
+
+        <select name="known" class="form-control" required>
+          <option>How do known about insurance?</option>
+          <option value="advertisement">Advertisement</option>
+          <option value="referral">Referral</option>
+        </select><br>
 
         <button class="btn btn-dark" type="submit">Submit</button>
 
