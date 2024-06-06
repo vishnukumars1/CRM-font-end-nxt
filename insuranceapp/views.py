@@ -349,15 +349,17 @@ def dashboard(request):
     da = request.user
     dat = agent.objects.get(user=da.id)
     data = customer.objects.filter(agentno=dat.id)
-    return render(request,'agent/dashboard.html',{'view':data})
+    return render(request,'agent/dashboard.html',{'view':data,'agent':dat})
 
 def viewcustomer(request,dd):
     data = customer.objects.get(id=dd)
     return render(request,'agent/viewcustomer.html',{'view':data})
 
 def editcustomer(request,dd):
+    da = request.user
+    dat = agent.objects.get(user=da.id)
     data = customer.objects.get(id=dd)
-    return render(request,'agent/editcustomer.html',{'edit':data})
+    return render(request,'agent/editcustomer.html',{'edit':data,'agent':dat})
 
 def editcus(request,dd):
     data = customer.objects.get(id=dd)
