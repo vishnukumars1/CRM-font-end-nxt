@@ -370,7 +370,7 @@ a {
         <div class="shadow mb-2 p-2 rounded mx-auto" style="background-color: rgba(241, 241, 241, 0.112);
                 " id="pro">
 
-          <h5>Qualification</h5>
+          <h6>Qualification</h6>
 
           {% if view.qualification == 'degree' %}
 
@@ -397,7 +397,7 @@ a {
 
           <br>
 
-          <h5>Age</h5>
+          <h6>Age</h6>
 
           {% if view.age >= 20 %}
 
@@ -424,7 +424,7 @@ a {
 
           <br>
 
-          <h5>Annual Income</h5>
+          <h6>Annual Income</h6>
 
           {% if view.annual_income >= 100000 %}
 
@@ -452,35 +452,72 @@ a {
       </div>
 
 
-      <div class="col wow fadeInUp" data-wow-delay="1s">
+      <div class="col wow fadeInUp">
         <div class="shadow mb-2 p-2 rounded" style="background-color: #f1f1f15c;" id="pro">
-          <h5><i class="bi bi-calendar2"></i> Date of birth : {{view.dob}} </h5><br>
+          <h6><i class="bi bi-calendar2"></i> Date of birth : {{view.dob}} </h6><br>
           {% if view.gender == 'male' %}
-          <h5>Gender : {{view.gender}} <i class="bi bi-gender-male"></i></h5>
+          <h6>Gender : {{view.gender}} <i class="bi bi-gender-male"></i></h6>
           {% elif view.gender == 'female' %}
-          <h5>Gender : {{view.gender}} <i class="bi bi-gender-female"></i></h5>
+          <h6>Gender : {{view.gender}} <i class="bi bi-gender-female"></i></h6>
           {% else %}
-          <h5>Gender : {{view.gender}} <i class="bi bi-gender-trans"></i></h5>
+          <h6>Gender : {{view.gender}} <i class="bi bi-gender-trans"></i></h6>
           {% endif %}
           <br>
-          <h5>Address : {{view.address}}</h5><br>
-          <h5><i class="bi bi-telephone-fill"></i> Phone number : {{view.phone_number}}</h5><br>
-          <h5>Aadhaar : {{view.aadhar_number}}</h5><br>
-          <h5>Pan : {{view.pan_number}}</h5><br>
-          <h5>Profession: {{view.profession}} <i class="bi bi-person-workspace"></i></h5><br>
+          <h6>Address : {{view.address}}</h6><br>
+          <h6><i class="bi bi-telephone-fill"></i> Phone number : {{view.phone_number}}</h6><br>
+          <h6>Aadhaar : {{view.aadhar_number}}</h6><br>
+          <h6>Pan : {{view.pan_number}}</h6><br>
+          <h6>Profession: {{view.profession}} <i class="bi bi-person-workspace"></i></h6><br>
 
           {% if view.kids == 'not' %}
-          <h5>Kids: No <i class="bi bi-x-circle-fill"></i></h5>
+          <h6>Kids: No <i class="bi bi-x-circle-fill text-danger"></i></h6>
           {% else %}
-          <h5>Kids: Have <i class="bi bi-check-circle-fill"></i></h5>
+          <h6>Kids: Have <i class="bi bi-check-circle-fill text-success"></i></h6>
           {% endif %}
           <br>
 
           {% if view.how_know == 'referral' %}
-          <h5>About: {{view.how_know}} <i class="bi bi-hand-thumbs-up-fill"></i></h5>
+          <h6>About: {{view.how_know}} <i class="bi bi-hand-thumbs-up-fill"></i></h6>
           {% else %}
-          <h5>About: {{view.how_know}} <i class="bi bi-badge-ad-fill"></i></h5>
+          <h6>About: {{view.how_know}} <i class="bi bi-badge-ad-fill"></i></h6>
           {% endif %}
+          <br>
+
+
+          {% if view.feedback == 'good' %}
+          <h6>Feedback: {{view.feedback}} <i class="bi bi-emoji-smile text-success"></i></h6><br>
+          {% elif view.feedback == 'average' %}
+          <h6>Feedback: {{view.feedback}} <i class="bi bi-emoji-frown text-warning"></i></h6><br>
+          {% else %}
+          <h6>Feedback: {{view.feedback}} <i class="bi bi-emoji-angry text-danger"></i></h6><br>
+          {% endif %}
+
+
+          <h6>Insurance markup area: {{view.markup_area}}</h6><br>
+
+          {% if view.purchase_insurance == 'willing to buy' %}
+          <h6>Willing to purchase insurance: Yes <i class="bi bi-check-circle-fill text-success"></i></h6><br>
+          {% else %}
+          <h6>Willing to purchase insurance: No <i class="bi bi-x-circle-fill text-danger"></i></h6><br>
+          {% endif %}
+          
+          {% if view.purchase_insurance == 'willing to buy' %}
+          <h6>Willing to share previous insurance: {{view.share_insurance}} <i class="bi bi-check-circle-fill text-success"></i></h6><br>
+          {% else %}
+          <h6>Willing to share previous insurance: {{view.share_insurance}} <i class="bi bi-x-circle-fill text-danger"></i></h6><br>
+          {% endif %}
+          
+
+          <h6><i class="bi bi-chat-dots"></i> Comments: {{view.comments}} </h6><br>
+
+          {% if view.company_name %}
+          <h6>company_name: {{view.company_name}} </h6><br>
+          {% endif %}
+
+          {% if view.insurance_name%}
+          <h6>insurance_name: {{view.insurance_name}}</h6><br>
+          {% endif %}
+
         </div>
       </div>
     </div>
@@ -507,7 +544,7 @@ a {
           </div>
         </div>
         <div class="col-lg-3 col-md-6">
-          <h5 class="text-light mb-4">Address</h5>
+          <h6 class="text-light mb-4">Address</h6>
           <p class="text-white">
             <i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA
           </p>
@@ -515,7 +552,7 @@ a {
           <p class="text-white"><i class="fa fa-envelope me-3"></i>info@example.com</p>
         </div>
         <div class="col-lg-3 col-md-6">
-          <h5 class="text-light mb-4">Quick Links</h5>
+          <h6 class="text-light mb-4">Quick Links</h6>
           <a class="btn btn-link text-white" href="" style="text-decoration: none;">About Us</a>
           <a class="btn btn-link text-white" href="" style="text-decoration: none;">Contact Us</a>
           <a class="btn btn-link text-white" href="" style="text-decoration: none;">Our Services</a>
@@ -523,7 +560,7 @@ a {
           <a class="btn btn-link text-white" href="" style="text-decoration: none;">Support</a>
         </div>
         <div class="col-lg-3 col-md-6">
-          <h5 class="text-light mb-4">Newsletter</h5>
+          <h6 class="text-light mb-4">Newsletter</h6>
           <p class="text-white">Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
           <div class="position-relative mx-auto" style="max-width: 400px">
             <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email" />

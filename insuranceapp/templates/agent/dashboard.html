@@ -279,16 +279,16 @@ a {
         <div class="row row-cols-1 row-cols-md-3">
             {% for i in view %}
             <div class="col wow fadeInDown">
-                <div class="card mb-3">
+                <div class="card mb-3" style="width: 80%;">
 
                     {% if i.profile %}
-                    <img src="{{i.profile.url}}" class="card-img-top" id="imc">
+                    <img src="{{i.profile.url}}" class="card-img-top" id="imc" style="height: 260px;">
                     {% else %}
-                    <img src="{% static 'img/images.png' %}" class="card-img-top" id="imc" style="height: 300px;">
+                    <img src="{% static 'img/images.png' %}" class="card-img-top" id="imc" style="height: 260pxpx;">
                     {% endif %}
 
                     <div class="card-body">
-                        <h2 class="card-title text-dark text-center">{{i.user.first_name}} {{i.user.last_name}}</h2>
+                        <h4 class="card-title text-dark text-center">{{i.user.first_name}} {{i.user.last_name}}</h4>
                         <center>
                             <a href="{% url 'view_customer' i.id %}"><button
                                     class="btn btn-outline-dark">View</button></a>

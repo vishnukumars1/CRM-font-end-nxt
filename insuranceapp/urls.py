@@ -35,4 +35,11 @@ urlpatterns = [
     path('edit_customer/<int:dd>',views.editcustomer,name='edit_customer'),
     path('edit_cus/<int:dd>',views.editcus,name='edit_cus'),
     path('delete_customer/<int:dd>',views.deletecustomer,name='delete_customer'),
+
+    path('agent_view_customer/<int:dd>',views.agentviewcustomer,name='agent_view_customer'),
+
+    path('view_customer_detail/<int:dd>',views.viewcustomerdetail,name='view_customer_detail'),
+
+    path('no_customer/<int:dd>',views.nocustomer,name='no_customer'),
+    
 ]

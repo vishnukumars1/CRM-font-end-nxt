@@ -274,7 +274,8 @@ a {
     <div class="container wow fadeInUp">
         <div>
 
-            <form action="{% url 'edit_cus' edit.id %}" method="post" enctype="multipart/form-data" class="form-group">
+            <form action="{% url 'edit_cus' edit.id %}" method="post" enctype="multipart/form-data" class="form-group mx-auto"
+            style="width: 60%;">
 
                 {% csrf_token %}
 

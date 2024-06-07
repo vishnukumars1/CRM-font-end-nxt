@@ -32,4 +32,13 @@ class customer(models.Model):
     kids = models.CharField(max_length=100)
     how_know = models.CharField(max_length=200)
     agentno = models.ForeignKey(agent,on_delete=models.CASCADE,null=True)
+    feedback = models.CharField(max_length=200,null=True)
+    markup_area = models.CharField(max_length=200,null=True)
+    purchase_insurance = models.CharField(max_length=200,null=True)
+    share_insurance = models.CharField(max_length=200,null=True)
+    comments = models.CharField(max_length=200,null=True)
+    switch_insurance = models.CharField(max_length=200,null=True)
+    company_name = models.CharField(max_length=200,null=True)
+    insurance_name = models.CharField(max_length=200,null=True)
+    
     

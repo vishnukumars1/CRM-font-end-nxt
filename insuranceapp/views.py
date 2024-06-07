@@ -60,8 +60,26 @@ def addagent(request):
         elif User.objects.filter(email=em).exists():
             messages.error(request,'This email is already exist')
             return redirect('admin_home')
-        elif len(passw) != 6:
-            messages.error(request,'Password must be 6 characters')
+        elif len(an) != 12:
+            messages.error(request,'Please enter the valid aathaar number')
+            return redirect('admin_home')
+        elif not any(i.isupper() for i in pan):
+            messages.error(request,'Invalid pan number')
+            return redirect('admin_home')
+        elif len(pan) != 10:
+            messages.error(request,'Invalid pan number')
+            return redirect('admin_home')
+        elif len(num) != 10:
+            messages.error(request,'Invalid phone number')
+            return redirect('admin_home')
+        elif not any(i.isupper() for i in passw):
+            messages.error(request,'Password must be atleast one Capital letter')
+            return redirect('admin_home')
+        elif not any(i.islower() for i in passw):
+            messages.error(request,'Password must be atleast one Small letter')
+            return redirect('admin_home')
+        elif not any(i.isdigit() for i in passw):
+            messages.error(request,'Password must be atleast one number')
             return redirect('admin_home')
         elif passw != cpassw:
             messages.error(request,'Password and conform password are incorrect')
@@ -104,7 +122,9 @@ def edit(request,dd):
         data.user.first_name = request.POST.get('f_name')
         data.user.last_name = request.POST.get('l_name')
         data.aadaar_number = request.POST.get('a_number')
+        an = request.POST.get('a_number')
         data.pan_number = request.POST.get('pan')
+        pan = request.POST.get('pan')
         data.qualification = request.POST.get('quali')
         data.gender = request.POST.get('gent')
         data.address = request.POST.get('address')
@@ -132,6 +152,15 @@ def edit(request,dd):
                         if not newmail.endswith('@gmail.com'):
                             messages.error(request,'invalid email!')
                             return redirect('edit_agent',dd=dd)
+                        elif len(an) != 12:
+                            messages.error(request,'invalid Aadhar number!')
+                            return redirect('edit_agent',dd=dd)
+                        elif not any(i.isupper() for i in pan):
+                            messages.error(request,'invalid Pan number!')
+                            return redirect('edit_agent',dd=dd)
+                        elif len(pan) != 10:
+                            messages.error(request,'Invalid pan number')
+                            return redirect('edit_agent',dd=dd)
                         elif len(ph) != 10:
                             messages.error(request,'invalid Phone number!')
                             return redirect('edit_agent',dd=dd)
@@ -148,6 +177,15 @@ def edit(request,dd):
                 else:
                     if not newmail.endswith('@gmail.com'):
                         messages.error(request,'invalid email!')
+                        return redirect('edit_agent',dd=dd)
+                    elif len(an) != 12:
+                        messages.error(request,'invalid Aadhar number!')
+                        return redirect('edit_agent',dd=dd)
+                    elif not any(i.isupper() for i in pan):
+                        messages.error(request,'invalid Pan number!')
+                        return redirect('edit_agent',dd=dd)
+                    elif len(pan) != 10:
+                        messages.error(request,'Invalid pan number')
                         return redirect('edit_agent',dd=dd)
                     elif len(ph) != 10:
                         messages.error(request,'invalid Phone number!')
@@ -168,6 +206,15 @@ def edit(request,dd):
                     if not newmail.endswith('@gmail.com'):
                         messages.error(request,'invalid email!')
                         return redirect('edit_agent',dd=dd)
+                    elif len(an) != 12:
+                        messages.error(request,'invalid Aadhar number!')
+                        return redirect('edit_agent',dd=dd)
+                    elif not any(i.isupper() for i in pan):
+                        messages.error(request,'invalid Pan number!')
+                        return redirect('edit_agent',dd=dd)
+                    elif len(pan) != 10:
+                        messages.error(request,'Invalid pan number')
+                        return redirect('edit_agent',dd=dd)
                     elif len(ph) != 10:
                         messages.error(request,'invalid Phone number!')
                         return redirect('edit_agent',dd=dd)
@@ -184,6 +231,15 @@ def edit(request,dd):
             else:
                 if not newmail.endswith('@gmail.com'):
                     messages.error(request,'invalid email!')
+                    return redirect('edit_agent',dd=dd)
+                elif len(an) != 12:
+                    messages.error(request,'invalid Aadhar number!')
+                    return redirect('edit_agent',dd=dd)
+                elif not any(i.isupper() for i in pan):
+                    messages.error(request,'invalid Pan number!')
+                    return redirect('edit_agent',dd=dd)
+                elif len(pan) != 10:
+                    messages.error(request,'Invalid pan number')
                     return redirect('edit_agent',dd=dd)
                 elif len(ph) != 10:
                     messages.error(request,'invalid Phone number!')
@@ -212,7 +268,9 @@ def editpro(request,dd):
         data.user.first_name = request.POST.get('f_name')
         data.user.last_name = request.POST.get('l_name')
         data.aadaar_number = request.POST.get('a_number')
+        an = request.POST.get('a_number')
         data.pan_number = request.POST.get('pan')
+        pan = request.POST.get('pan')
         data.qualification = request.POST.get('quali')
         data.gender = request.POST.get('gent')
         data.address = request.POST.get('address')
@@ -240,6 +298,15 @@ def editpro(request,dd):
                         if not newmail.endswith('@gmail.com'):
                             messages.error(request,'invalid email!')
                             return redirect('edit_profile',dd=dd)
+                        elif len(an) != 12:
+                            messages.error(request,'invalid Aadhar number!')
+                            return redirect('edit_profile',dd=dd)
+                        elif not any(i.isupper() for i in pan):
+                            messages.error(request,'invalid Pan number!')
+                            return redirect('edit_profile',dd=dd)
+                        elif len(pan) != 10:
+                            messages.error(request,'Invalid pan number')
+                            return redirect('edit_profile',dd=dd)
                         elif len(ph) != 10:
                             messages.error(request,'invalid Phone number!')
                             return redirect('edit_profile',dd=dd)
@@ -256,6 +323,15 @@ def editpro(request,dd):
                 else:
                     if not newmail.endswith('@gmail.com'):
                         messages.error(request,'invalid email!')
+                        return redirect('edit_profile',dd=dd)
+                    elif len(an) != 12:
+                        messages.error(request,'invalid Aadhar number!')
+                        return redirect('edit_profile',dd=dd)
+                    elif not any(i.isupper() for i in pan):
+                        messages.error(request,'invalid Pan number!')
+                        return redirect('edit_profile',dd=dd)
+                    elif len(pan) != 10:
+                        messages.error(request,'Invalid pan number')
                         return redirect('edit_profile',dd=dd)
                     elif len(ph) != 10:
                         messages.error(request,'invalid Phone number!')
@@ -276,6 +352,15 @@ def editpro(request,dd):
                     if not newmail.endswith('@gmail.com'):
                         messages.error(request,'invalid email!')
                         return redirect('edit_profile',dd=dd)
+                    elif len(an) != 12:
+                        messages.error(request,'invalid Aadhar number!')
+                        return redirect('edit_profile',dd=dd)
+                    elif not any(i.isupper() for i in pan):
+                        messages.error(request,'invalid Pan number!')
+                        return redirect('edit_profile',dd=dd)
+                    elif len(pan) != 10:
+                        messages.error(request,'Invalid pan number')
+                        return redirect('edit_profile',dd=dd)
                     elif len(ph) != 10:
                         messages.error(request,'invalid Phone number!')
                         return redirect('edit_profile',dd=dd)
@@ -292,6 +377,15 @@ def editpro(request,dd):
             else:
                 if not newmail.endswith('@gmail.com'):
                     messages.error(request,'invalid email!')
+                    return redirect('edit_profile',dd=dd)
+                elif len(an) != 12:
+                    messages.error(request,'invalid Aadhar number!')
+                    return redirect('edit_profile',dd=dd)
+                elif not any(i.isupper() for i in pan):
+                    messages.error(request,'invalid Pan number!')
+                    return redirect('edit_profile',dd=dd)
+                elif len(pan) != 10:
+                    messages.error(request,'Invalid pan number')
                     return redirect('edit_profile',dd=dd)
                 elif len(ph) != 10:
                     messages.error(request,'invalid Phone number!')
@@ -333,16 +427,45 @@ def addcus(request):
         income  = request.POST.get('income')
         select = request.POST.get('yes')
         how = request.POST.get('known')
+        c_service = request.POST.get('service')
+        m_area = request.POST.get('markup')
+        p_insurance = request.POST.get('willing')
+        s_insurance = request.POST.get('share')
+        comment = request.POST.get('comments')
+        switch = request.POST.get('switch')
+        c_name = request.POST.get('c_name')
+        i_name = request.POST.get('i_name')
 
         data = request.user
         da = agent.objects.get(user=data.id)
         dat = agent.objects.get(id=da.id)
 
-        user = User.objects.create_user(first_name = fn,last_name = ln,username = un)
-        uid = User.objects.get(id=user.id)
-        customer.objects.create(aadhar_number = an,pan_number = pan,dob = db,qualification = qua,gender = gen,address = add,phone_number = num,user = uid,profile = img,age = age,profession = occup,annual_income = income,kids = select,how_know = how,agentno = dat)
-        messages.success(request,'Register successfully')
-        return redirect('add_customer')
+
+        if len(num) != 10:
+            messages.error(request,'invalid Phone number!')
+            return redirect('add_customer')
+        elif len(an) != 12:
+            messages.error(request,'invalid Aadhar number!')
+            return redirect('add_customer')
+        elif not any(i.isupper() for i in pan):
+            messages.error(request,'invalid Pan number!')
+            return redirect('add_customer')
+        elif len(pan) != 10:
+            messages.error(request,'Invalid pan number')
+            return redirect('add_customer')
+        elif User.objects.filter(username=un).exists():
+            messages.error(request,'Use another username')
+            return redirect('add_customer')
+        else:
+            user = User.objects.create_user(first_name = fn,last_name = ln,username = un)
+            uid = User.objects.get(id=user.id)
+            customer.objects.create(aadhar_number = an,pan_number = pan,dob = db,qualification = qua,gender = gen,address = add,phone_number = num,user = uid,profile = img,age = age,profession = occup,annual_income = income,kids = select,
+                                    how_know = how,agentno = dat,feedback = c_service,markup_area = m_area,
+                                    purchase_insurance = p_insurance,share_insurance = s_insurance,
+                                    comments = comment,switch_insurance = switch,company_name = c_name,
+                                    insurance_name = i_name)
+            messages.success(request,'Register successfully')
+            return redirect('add_customer')
     return redirect('add_customer')
 
 def dashboard(request):
@@ -375,7 +498,9 @@ def editcus(request,dd):
         data.qualification = request.POST.get('quali')
         data.annual_income  = request.POST.get('income')
         data.aadhar_number = request.POST.get('a_number')
+        an = request.POST.get('a_number')
         data.pan_number = request.POST.get('pan')
+        pan = request.POST.get('pan')
 
         old = data.profile
         new = request.FILES.get('img')
@@ -388,6 +513,15 @@ def editcus(request,dd):
         if len(ph) != 10:
             messages.error(request,'invalid Phone number!')
             return redirect('edit_customer',dd=dd)
+        elif len(an) != 12:
+            messages.error(request,'invalid Aadhar number!')
+            return redirect('edit_customer')
+        elif not any(i.isupper() for i in pan):
+            messages.error(request,'invalid Pan number!')
+            return redirect('edit_customer')
+        elif len(pan) != 10:
+            messages.error(request,'Invalid pan number')
+            return redirect('edit_customer')
         else:
             data.user.save()
             data.save()
@@ -401,4 +535,20 @@ def deletecustomer(request,dd):
     data.delete()
     use.delete()
     return redirect('dash_board')
+
+def nocustomer(request,dd):
+    data = agent.objects.get(id=dd)
+    return render(request,'admin/nocustomer.html',{'dat':data})
+
+def agentviewcustomer(request,dd):
+    da = agent.objects.get(id=dd)
+    if customer.objects.filter(agentno=dd).exists():
+        data = customer.objects.filter(agentno=dd)
+        return render(request,'admin/agentcustomer.html',{'customer':data,'dat':da})
+    else:
+        return redirect('no_customer',dd=dd)
+
+def viewcustomerdetail(request,dd):
+    data = customer.objects.get(id=dd)
+    return render(request,'admin/viewcustomerdetail.html',{'view':data})
 

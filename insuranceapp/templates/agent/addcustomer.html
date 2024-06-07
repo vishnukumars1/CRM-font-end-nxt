@@ -237,7 +237,6 @@ a {
 
   <header class="header" id="header">
     <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-    <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
   </header>
   <div class="l-navbar" id="nav-bar">
     <nav class="nav">
@@ -266,7 +265,8 @@ a {
   <div class="container wow fadeInUp">
     <div>
 
-      <form action="{% url 'add_cus' %}" method="post" enctype="multipart/form-data" class="form-group">
+      <form action="{% url 'add_cus' %}" method="post" enctype="multipart/form-data" class="form-group mx-auto"
+      style="width: 60%;">
 
         {% csrf_token %}
 
@@ -350,6 +350,44 @@ a {
           <option value="advertisement">Advertisement</option>
           <option value="referral">Referral</option>
         </select><br>
+
+        <select name="service" class="form-control" required>
+          <option>How do known about insurance?</option>
+          <option value="good">Good</option>
+          <option value="average">Average</option>
+          <option value="bad">Bad</option>
+        </select><br>
+
+        <input type="text" name="markup" placeholder="Insurance markup area" class="form-control"
+        style="border: none;border-bottom: 2px solid;"><br>
+
+        <select name="willing" class="form-control" required>
+          <option>Purchase insurance</option>
+          <option value="willing to buy">Willing to buy</option>
+          <option value="not yet">Not yet</option>
+        </select><br>
+
+        <select name="share" class="form-control" required>
+          <option>Share previous insurance</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select><br>
+
+        <textarea name="comments" cols="30" rows="4" placeholder="Comments about agent"
+        class="form-control"></textarea><br>
+
+        <select name="switch" class="form-control" required>
+          <option>Switch over another insurance</option>
+          <option value="willing to switch">Willing to switch</option>
+          <option value="not yet">Not yet</option>
+        </select><br>
+
+        <label for="comp">Existing profile details</label>
+        <input type="text" id="comp" name="c_name" style="border: none;border-bottom: 2px solid;" placeholder="Company name"
+          class="form-control"><br>
+
+          <input type="text" name="i_name" style="border: none;border-bottom: 2px solid;" placeholder="Insurance name"
+          class="form-control"><br>
 
         <button class="btn btn-dark" type="submit">Submit</button>
 

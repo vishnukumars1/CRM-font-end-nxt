@@ -51,7 +51,7 @@
       <ul class="navbar-nav mx-auto bg-white rounded pe-4 py-3 py-lg-0">
         <li class="nav-item active">
           <a class="nav-link text-dark" href="{% url 'home' %}" id="home">
-            <h4>HOME</h4>
+            <h6>HOME</h6>
           </a>
         </li>
       </ul>
@@ -69,15 +69,26 @@
 
           {% csrf_token %}
 
+          
+
 
           <img src="{% static 'img/person-circle-icon-256x256-lqphrhom.png' %}"
-            style="height: 80px;width: 80px;"><br><br><br>
+            style="height: 90px;width: 80px;"><br><br>
+
+            {% for s in messages %}
+        <div class="alert {% if s.tags == 'error' %}alert-danger{% elif s.tags == 'success' %}alert-success{% endif %}"
+          role="alert">{{s}}
+          <button data-dismiss="alert" class="btn"><i class="bi bi-x-octagon-fill"></i></button>
+        </div>
+        {% endfor %}
           <i class="bi bi-envelope-fill" style="font-size: 20px;"></i>
+
+          
           <input type="text" class="form-control" style="border: none;border-bottom: 2px solid black;"
-            placeholder="Username" name="u_name"><br><br>
+            placeholder="Username" name="u_name"><br>
           <i class="bi bi-shield-lock-fill"></i>
           <input type="password" class="form-control" style="border: none;border-bottom: 2px solid black;"
-            placeholder="Password" name="pass"><br><br>
+            placeholder="Password" name="pass"><br>
           <button class="btn btn-dark" type="submit" style="width: 50%;border-radius: 50px;">Login</button>
         </form>
 

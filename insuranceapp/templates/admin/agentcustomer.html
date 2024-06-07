@@ -248,11 +248,13 @@
         <nav class="nav">
             <div> <span href="#" class="nav_logo"> <i class="bi bi-shield-fill-check text-white"></i> <span
                         class="nav_logo-name"> insuranz</span> </span>
-                <div class="nav_list"> <a href="{% url 'add_agency_page' %}" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i>
-                        <span class="nav_name">dashboard</span> </a> <a href="{% url 'admin_home' %}" class="nav_link">
-                        <i class='bx bx-user nav_icon'></i> <span class="nav_name">Add agent</span> </a>  
+                <div class="nav_list"> <a href="{% url 'add_agency_page' %}" class="nav_link active"> <i class="bi bi-house-fill nav_icon"></i>
+                        <span class="nav_name">Home</span> </a>  
+
+                        <a href="{% url 'view_agent' dat.id  %}" class="nav_link active"> <i class="bi bi-backspace-fill nav_icon"></i>
+                            <span class="nav_name">Back</span> </a> 
                 </div>
-            </div> <a href="{% url 'logout' %}" class="nav_link"><i class='bx bx-log-out nav_icon'></i> <span
+            </div> <a href="{% url 'logout' %}" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span
                     class="nav_name">SignOut</span> </a>
         </nav>
     </div>
@@ -263,7 +265,7 @@
 
     <div class="container">
         <div class="row row-cols-1 row-cols-md-3">
-            {% for i in agen %}
+            {% for i in customer %}
             <div class="col wow fadeInDown">
                 <div class="card mb-3" style="width: 80%;">
 
@@ -276,7 +278,7 @@
                     <div class="card-body">
                         <h4 class="card-title text-dark text-center">{{i.user.first_name}} {{i.user.last_name}}</h4>
                         <center>
-                            <a href="{% url 'view_agent' i.id %}"><button class="btn btn-outline-dark">View</button></a>
+                            <a href="{% url 'view_customer_detail' i.id %}"><button class="btn btn-outline-dark">View</button></a>
                         </center>
                     </div>
                 </div>
