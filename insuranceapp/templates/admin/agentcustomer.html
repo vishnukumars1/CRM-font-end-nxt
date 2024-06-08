@@ -243,6 +243,16 @@
 
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <div class="header-text ml-auto">{{dat.user.first_name}} {{dat.user.last_name}}</div>&nbsp;&nbsp;&nbsp;
+    <div class="header_img">
+    
+      {% if dat.profile %}
+            <img src="{{dat.profile.url}}" style="height: 50px;">
+            {% else %}
+            <img src="{% static 'img/images.png' %}" class="img-thumbnail rounded-circle" style="height: 50px;">
+            {% endif %}
+      
+    </div>
     </header>
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
@@ -267,7 +277,7 @@
         <div class="row row-cols-1 row-cols-md-3">
             {% for i in customer %}
             <div class="col wow fadeInDown">
-                <div class="card mb-3" style="width: 80%;">
+                <div class="card mb-3 ml-4" style="width: 80%;">
 
                     {% if i.profile %}
                     <img src="{{i.profile.url}}" class="card-img-top" id="imc" style="height: 260px;">

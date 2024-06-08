@@ -278,8 +278,8 @@ a {
     <div class="container">
         <div class="row row-cols-1 row-cols-md-3">
             {% for i in view %}
-            <div class="col wow fadeInDown">
-                <div class="card mb-3" style="width: 80%;">
+            <div class="col wow fadeInDown mb-2">
+                <div class="card mb-3 ml-4" style="width: 80%;">
 
                     {% if i.profile %}
                     <img src="{{i.profile.url}}" class="card-img-top" id="imc" style="height: 260px;">
